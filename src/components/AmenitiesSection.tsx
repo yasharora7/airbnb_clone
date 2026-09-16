@@ -52,16 +52,19 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({ onOpenAmenit
       <h3 className="section-title">What this place offers</h3>
 
       <div className="amenities-grid">
-        {featuredAmenities.map((amenity, idx) => (
-          <div key={idx} className="amenity-item">
-            <span className="amenity-icon">{renderAmenityIcon(amenity.icon)}</span>
-            <span className="amenity-name">{amenity.name}</span>
-          </div>
-        ))}
+        {featuredAmenities.map((amenity, idx) => {
+          const isCut = amenity.name.includes("Carbon monoxide") || amenity.name.includes("Smoke alarm");
+          return (
+            <div key={idx} className={`amenity-item ${isCut ? "is-cut" : ""}`}>
+              <span className="amenity-icon">{renderAmenityIcon(amenity.icon)}</span>
+              <span className="amenity-name">{amenity.name}</span>
+            </div>
+          );
+        })}
       </div>
 
       <button className="btn-outline show-all-amenities-btn" onClick={onOpenAmenitiesModal}>
-        Show all 45 amenities
+        Show all 50 amenities
       </button>
 
       <style>{`
@@ -86,6 +89,14 @@ export const AmenitiesSection: React.FC<AmenitiesSectionProps> = ({ onOpenAmenit
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+        .amenity-item.is-cut {
+          text-decoration: line-through;
+          color: var(--text-muted);
+          opacity: 0.7;
+        }
+        .amenity-item.is-cut .amenity-icon {
+          opacity: 0.7;
         }
         .amenity-name {
           font-size: 16px;

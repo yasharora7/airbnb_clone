@@ -146,9 +146,6 @@ export const App: React.FC = () => {
         <NearbyStaysSection />
       </main>
 
-      {/* Global Footer */}
-      <Footer />
-
       {/* Mobile Sticky CTA Bar */}
       <MobileBottomBar
         onReserve={handleOpenReserve}

@@ -39,11 +39,14 @@ export const AmenitiesModal: React.FC<AmenitiesModalProps> = ({ isOpen, onClose 
             <div key={idx} className="amenity-category-group">
               <h3 className="amenity-cat-title">{category.category}</h3>
               <div className="amenity-items-list">
-                {category.items.map((item, itemIdx) => (
-                  <div key={itemIdx} className="amenity-modal-row">
-                    <span className="amenity-row-name">{item}</span>
-                  </div>
-                ))}
+                {category.items.map((item, itemIdx) => {
+                  const isCut = item.includes("Carbon monoxide") || item.includes("Smoke alarm");
+                  return (
+                    <div key={itemIdx} className={`amenity-modal-row ${isCut ? "is-cut" : ""}`}>
+                      <span className="amenity-row-name">{item}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ))}
@@ -80,6 +83,11 @@ export const AmenitiesModal: React.FC<AmenitiesModalProps> = ({ isOpen, onClose 
           gap: 16px;
           font-size: 16px;
           color: var(--text-main);
+        }
+        .amenity-modal-row.is-cut {
+          text-decoration: line-through;
+          color: var(--text-muted);
+          opacity: 0.65;
         }
         .amenity-row-name {
           font-size: 16px;

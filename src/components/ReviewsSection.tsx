@@ -40,27 +40,89 @@ export const ReviewsSection: React.FC = () => {
             <span className="guest-fav-sub">
               This home is a guest favourite based on ratings, reviews and reliability
             </span>
+            <button className="how-reviews-work-btn">How reviews work</button>
           </div>
         </div>
         <img src="/images/laurel-right.png" alt="Laurel right" className="reviews-laurel-img" />
       </div>
 
-      {/* Category Ratings Bar Grid */}
-      <div className="rating-categories-grid">
-        {categories.map((cat, idx) => (
-          <div key={idx} className="category-rating-item">
-            <div className="cat-header">
-              <span className="cat-label">{cat.label}</span>
-              <span className="cat-score">{cat.score.toFixed(1)}</span>
-            </div>
-            <div className="cat-bar-bg">
-              <div
-                className="cat-bar-fill"
-                style={{ width: `${(cat.score / 5.0) * 100}%` }}
-              />
+      {/* Overall Rating & 6 Column Subcategory Breakdown */}
+      <div className="reviews-breakdown-row">
+        {/* Left: Overall rating bar chart */}
+        <div className="overall-rating-col">
+          <h4 className="breakdown-col-title">Overall rating</h4>
+          <div className="stars-dist-list">
+            {[5, 4, 3, 2, 1].map((stars) => {
+              const pct = stars === 5 ? 95 : stars === 4 ? 5 : 0;
+              return (
+                <div key={stars} className="star-dist-row">
+                  <span className="star-num">{stars}</span>
+                  <div className="star-bar-bg">
+                    <div className="star-bar-fill" style={{ width: `${pct}%` }} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right: 6 Vertical Column Categories */}
+        <div className="subcategory-cols-grid">
+          <div className="subcat-col">
+            <span className="subcat-title">Cleanliness</span>
+            <span className="subcat-score">5.0</span>
+            <div className="subcat-icon">
+              <img src="/images/cleanliness.png" alt="Cleanliness" className="subcat-img-icon" />
             </div>
           </div>
-        ))}
+
+          <div className="subcat-col">
+            <span className="subcat-title">Accuracy</span>
+            <span className="subcat-score">5.0</span>
+            <div className="subcat-icon">
+              <img src="/images/accuracy.png" alt="Accuracy" className="subcat-img-icon" />
+            </div>
+          </div>
+
+          <div className="subcat-col">
+            <span className="subcat-title">Check-in</span>
+            <span className="subcat-score">5.0</span>
+            <div className="subcat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="1.8">
+                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+              </svg>
+            </div>
+          </div>
+
+          <div className="subcat-col">
+            <span className="subcat-title">Communication</span>
+            <span className="subcat-score">5.0</span>
+            <div className="subcat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="1.8">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+          </div>
+
+          <div className="subcat-col">
+            <span className="subcat-title">Location</span>
+            <span className="subcat-score">4.8</span>
+            <div className="subcat-icon">
+              <img src="/images/location.png" alt="Location" className="subcat-img-icon" />
+            </div>
+          </div>
+
+          <div className="subcat-col">
+            <span className="subcat-title">Value</span>
+            <span className="subcat-score">4.8</span>
+            <div className="subcat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="1.8">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                <line x1="7" y1="7" x2="7.01" y2="7"/>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Search and Tag Filters */}
@@ -199,42 +261,94 @@ export const ReviewsSection: React.FC = () => {
           line-height: 1.4;
           margin-top: 4px;
         }
-        .rating-categories-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px 48px;
-          margin-bottom: 40px;
+        .how-reviews-work-btn {
+          font-size: 14px;
+          font-weight: 600;
+          text-decoration: underline;
+          color: var(--text-main);
+          margin-top: 8px;
         }
-        .category-rating-item {
+        .reviews-breakdown-row {
+          display: grid;
+          grid-template-columns: 240px 1fr;
+          gap: 48px;
+          padding-bottom: 40px;
+          margin-bottom: 32px;
+          border-bottom: 1px solid var(--border-subtle);
+        }
+        .overall-rating-col {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 12px;
         }
-        .cat-header {
+        .breakdown-col-title {
+          font-size: 15px;
+          font-weight: 600;
+          color: var(--text-main);
+        }
+        .stars-dist-list {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .star-dist-row {
           display: flex;
           align-items: center;
-          justify-content: space-between;
-        }
-        .cat-label {
-          font-size: 15px;
-          color: var(--text-main);
-          font-weight: 500;
-        }
-        .cat-score {
-          font-size: 14px;
-          font-weight: 700;
+          gap: 12px;
+          font-size: 13px;
           color: var(--text-main);
         }
-        .cat-bar-bg {
+        .star-num {
+          font-weight: 600;
+          width: 8px;
+        }
+        .star-bar-bg {
+          flex: 1;
           height: 4px;
           background: #EBEBEB;
           border-radius: 2px;
           overflow: hidden;
         }
-        .cat-bar-fill {
+        .star-bar-fill {
           height: 100%;
           background: var(--text-main);
           border-radius: 2px;
+        }
+        .subcategory-cols-grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 16px;
+          border-left: 1px solid var(--border-subtle);
+          padding-left: 32px;
+        }
+        .subcat-col {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+        }
+        .subcat-title {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--text-main);
+        }
+        .subcat-score {
+          font-size: 18px;
+          font-weight: 700;
+          color: var(--text-main);
+        }
+        .subcat-icon {
+          margin-top: 12px;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .subcat-img-icon {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
         }
         .reviews-filter-bar {
           display: flex;

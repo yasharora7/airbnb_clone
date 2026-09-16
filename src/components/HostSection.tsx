@@ -67,9 +67,9 @@ export const HostSection: React.FC = () => {
           {/* Co-hosts section */}
           <div className="co-hosts-section">
             <h5 className="co-hosts-title">Co-Hosts</h5>
-            <div className="co-hosts-tags">
+            <div className="co-hosts-3col-grid">
               {host.coHosts.map((co, idx) => (
-                <div key={idx} className="co-host-pill">
+                <div key={idx} className="co-host-item-row">
                   <span className="co-host-avatar">{co.name.charAt(0)}</span>
                   <span className="co-host-name">{co.name}</span>
                 </div>
@@ -216,32 +216,31 @@ export const HostSection: React.FC = () => {
           font-weight: 600;
           color: var(--text-main);
         }
-        .co-hosts-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
+        .co-hosts-3col-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px 24px;
         }
-        .co-host-pill {
-          display: inline-flex;
+        .co-host-item-row {
+          display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 4px 10px 4px 6px;
-          background: #F7F7F7;
-          border: 1px solid var(--border-subtle);
-          border-radius: var(--radius-pill);
-          font-size: 13px;
+          gap: 12px;
+          font-size: 14px;
+          color: var(--text-main);
+          font-weight: 500;
         }
         .co-host-avatar {
-          width: 22px;
-          height: 22px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
-          background: #E0E0E0;
+          background: #222222;
+          color: #ffffff;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 700;
-          color: #555;
+          flex-shrink: 0;
         }
         .aircover-protection-note {
           display: flex;

@@ -6,28 +6,31 @@ export const NearbyStaysSection: React.FC = () => {
   const { nearbyStays } = LISTING_DATA;
   const [page, setPage] = React.useState<number>(1);
 
-  const totalPages = Math.ceil(nearbyStays.length / 4);
-  const displayedStays = nearbyStays.slice((page - 1) * 4, page * 4);
+  const totalPages = Math.ceil(nearbyStays.length / 5);
+  const displayedStays = nearbyStays.slice((page - 1) * 5, page * 5);
 
-  // Real mapped images that exist in public/images
   const getImageForStay = (id: string, originalImage: string) => {
     switch (id) {
       case "ns-1":
-        return "/images/co1.jpg";
+        return "/images/s1.jpeg";
       case "ns-2":
-        return "/images/co2.jpg";
+        return "/images/s2.jpeg";
       case "ns-3":
-        return "/images/co3.jpg";
+        return "/images/s3.jpeg";
       case "ns-4":
-        return "/images/nearby_4.jpg";
+        return "/images/s4.jpeg";
       case "ns-5":
-        return "/images/nearby_5.jpg";
+        return "/images/s5.jpeg";
       case "ns-6":
-        return "/images/nearby_6.jpg";
+        return "/images/s6.jpeg";
       case "ns-7":
-        return "/images/nearby_7.jpg";
+        return "/images/co1.jpg";
       case "ns-8":
-        return "/images/nearby_8.jpg";
+        return "/images/co2.jpg";
+      case "ns-9":
+        return "/images/co3.jpg";
+      case "ns-10":
+        return "/images/nearby_studio.jpg";
       default:
         return originalImage;
     }
@@ -65,22 +68,15 @@ export const NearbyStaysSection: React.FC = () => {
             <div key={stay.id} className="stay-card">
               <div className="stay-img-wrap">
                 <img src={imgSrc} alt={stay.title} />
-                <button className="stay-heart-btn" aria-label="Save stay">
-                  <Heart size={18} color="#ffffff" strokeWidth={2.2} />
-                </button>
               </div>
 
               <div className="stay-info">
-                <div className="stay-title-rating">
-                  <h4 className="stay-title truncate">{stay.title}</h4>
-                  <div className="stay-rating">
-                    <Star size={12} fill="#222222" color="#222222" />
-                    <span>{stay.rating.toFixed(2)}</span>
-                  </div>
-                </div>
-                <div className="stay-price-row">
+                <h4 className="stay-title">{stay.title}</h4>
+                <div className="stay-price-rating-row">
                   <span className="stay-price-num">{stay.price}</span>
-                  <span className="stay-price-sub">per night</span>
+                  <span className="stay-rating-inline">
+                    <span className="star-symbol">★</span> {stay.rating.toFixed(2)}
+                  </span>
                 </div>
               </div>
             </div>
@@ -98,6 +94,11 @@ export const NearbyStaysSection: React.FC = () => {
           align-items: center;
           justify-content: space-between;
           margin-bottom: 24px;
+        }
+        .section-title {
+          font-size: 22px;
+          font-weight: 600;
+          color: var(--text-main);
         }
         .carousel-nav-controls {
           display: flex;
@@ -132,19 +133,23 @@ export const NearbyStaysSection: React.FC = () => {
           border-color: var(--text-main);
           box-shadow: 0 2px 4px rgba(0,0,0,0.12);
         }
+        .nearby-stays-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 16px;
+        }
         .stay-card {
           display: flex;
           flex-direction: column;
           cursor: pointer;
         }
         .stay-img-wrap {
-          position: relative;
           width: 100%;
-          aspect-ratio: 1 / 0.95;
-          border-radius: var(--radius-md);
+          aspect-ratio: 1 / 0.88;
+          border-radius: 16px;
           overflow: hidden;
           background: #eee;
-          margin-bottom: 12px;
+          margin-bottom: 10px;
         }
         .stay-img-wrap img {
           width: 100%;
@@ -153,78 +158,51 @@ export const NearbyStaysSection: React.FC = () => {
           transition: transform 0.3s ease;
         }
         .stay-card:hover .stay-img-wrap img {
-          transform: scale(1.04);
-        }
-        .stay-heart-btn {
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          background: transparent;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-          transition: transform 0.15s ease;
-        }
-        .stay-heart-btn:hover {
-          transform: scale(1.15);
+          transform: scale(1.03);
         }
         .stay-info {
           display: flex;
           flex-direction: column;
-          gap: 2px;
-        }
-        .stay-title-rating {
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 8px;
         }
         .stay-title {
-          font-size: 15px;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.35;
+          color: var(--text-main);
+          margin-bottom: 4px;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .stay-price-rating-row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+        }
+        .stay-price-num {
           font-weight: 600;
           color: var(--text-main);
-          max-width: 80%;
         }
-        .stay-rating {
+        .stay-rating-inline {
+          font-weight: 500;
+          color: var(--text-main);
           display: flex;
           align-items: center;
           gap: 3px;
-          font-size: 14px;
-          font-weight: 500;
         }
-        .stay-location {
-          font-size: 14px;
-          color: var(--text-muted);
+        .star-symbol {
+          font-size: 12px;
         }
-        .stay-price-row {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-          margin-top: 4px;
-        }
-        .stay-price-num {
-          font-size: 15px;
-          font-weight: 600;
-          color: var(--text-main);
-        }
-        .stay-price-sub {
-          font-size: 13px;
-          color: var(--text-muted);
-        }
-        .truncate {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        @media (max-width: 1024px) {
+        @media (max-width: 1100px) {
           .nearby-stays-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
           }
         }
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
           .nearby-stays-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
           }
         }
       `}</style>

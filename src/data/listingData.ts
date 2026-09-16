@@ -72,27 +72,27 @@ export const LISTING_DATA = {
   heroPhotos: [
     {
       id: "hero-1",
-      url: "/images/hero_1.jpg",
+      url: "/images/s1.jpeg",
       caption: "Spacious living area with contemporary stone wall & designer lighting"
     },
     {
       id: "hero-2",
-      url: "/images/hero_2.jpg",
+      url: "/images/s2.jpeg",
       caption: "Living room lounge with coffee table and ambient lighting"
     },
     {
       id: "hero-3",
-      url: "/images/hero_3.jpg",
+      url: "/images/s3.jpeg",
       caption: "Private heated outdoor jacuzzi and wooden sun deck"
     },
     {
       id: "hero-4",
-      url: "/images/hero_4.jpg",
+      url: "/images/s4.jpeg",
       caption: "Master bedroom suite with plush double bed and warm natural light"
     },
     {
       id: "hero-5",
-      url: "/images/hero_5.jpg",
+      url: "/images/s5.jpeg",
       caption: "Exterior view of the luxury gated apartment complex in Candolim"
     }
   ],
@@ -373,22 +373,22 @@ export const LISTING_DATA = {
     {
       id: "ns-1",
       title: "Beautiful Studio with a view to die for",
-      image: "/images/nearby_1.jpg",
-      price: "₹28,600",
+      image: "/images/co1.jpg",
+      price: "₹23,600",
       rating: 4.91
     },
     {
       id: "ns-2",
-      title: "NAQAB - 1BHK with private pool",
-      image: "/images/nearby_2.jpg",
+      title: "NAQAB - 1bhk with private pool",
+      image: "/images/co2.jpg",
       price: "₹42,218",
       rating: 4.95
     },
     {
       id: "ns-3",
       title: "Greentique Luxury Flat with plunge pool, Calangute",
-      image: "/images/nearby_3.jpg",
-      price: "₹44,505",
+      image: "/images/co3.jpg",
+      price: "₹44,506",
       rating: 4.94
     },
     {
@@ -402,8 +402,8 @@ export const LISTING_DATA = {
       id: "ns-5",
       title: "Luxury Casa Bella 1BHK with plunge pool, Calangute",
       image: "/images/nearby_5.jpg",
-      price: "₹45,648",
-      rating: 5.0
+      price: "₹39,942",
+      rating: 4.95
     },
     {
       id: "ns-6",
@@ -425,6 +425,20 @@ export const LISTING_DATA = {
       image: "/images/nearby_8.jpg",
       price: "₹22,824",
       rating: 4.92
+    },
+    {
+      id: "ns-9",
+      title: "Tropical Luxury Apt | Private Jacuzzi & Terrace",
+      image: "/images/nearby_casabella.jpg",
+      price: "₹38,500",
+      rating: 4.98
+    },
+    {
+      id: "ns-10",
+      title: "Cozy Studio Apartment near Candolim Beach",
+      image: "/images/nearby_kanso.jpg",
+      price: "₹21,400",
+      rating: 4.90
     }
   ]
 };
