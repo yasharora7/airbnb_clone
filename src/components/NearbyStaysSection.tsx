@@ -9,31 +9,9 @@ export const NearbyStaysSection: React.FC = () => {
   const totalPages = Math.ceil(nearbyStays.length / 5);
   const displayedStays = nearbyStays.slice((page - 1) * 5, page * 5);
 
-  const getImageForStay = (id: string, originalImage: string) => {
-    switch (id) {
-      case "ns-1":
-        return "/images/s1.jpeg";
-      case "ns-2":
-        return "/images/s2.jpeg";
-      case "ns-3":
-        return "/images/s3.jpeg";
-      case "ns-4":
-        return "/images/s4.jpeg";
-      case "ns-5":
-        return "/images/s5.jpeg";
-      case "ns-6":
-        return "/images/s6.jpeg";
-      case "ns-7":
-        return "/images/co1.jpg";
-      case "ns-8":
-        return "/images/co2.jpg";
-      case "ns-9":
-        return "/images/co3.jpg";
-      case "ns-10":
-        return "/images/nearby_studio.jpg";
-      default:
-        return originalImage;
-    }
+  const getS1ToS6Image = (idx: number) => {
+    const num = (idx % 6) + 1;
+    return `/images/s${num}.jpeg`;
   };
 
   return (
@@ -62,8 +40,9 @@ export const NearbyStaysSection: React.FC = () => {
       </div>
 
       <div className="nearby-stays-grid">
-        {displayedStays.map((stay) => {
-          const imgSrc = getImageForStay(stay.id, stay.image);
+        {displayedStays.map((stay, indexInPage) => {
+          const globalIndex = (page - 1) * 5 + indexInPage;
+          const imgSrc = getS1ToS6Image(globalIndex);
           return (
             <div key={stay.id} className="stay-card">
               <div className="stay-img-wrap">
